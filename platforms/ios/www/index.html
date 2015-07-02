@@ -16,6 +16,9 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ng-cordova-oauth/ng-cordova-oauth.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -27,7 +30,12 @@
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
-      <ion-content>
+
+      <ion-content ng-controller="myCtrl">
+      <button ng-click="facebookLogin()">Login with facebok!</button>
+
+<p> {{ data }} </p>
+
       </ion-content>
     </ion-pane>
   </body>

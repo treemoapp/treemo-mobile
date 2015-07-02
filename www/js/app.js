@@ -15,5 +15,16 @@ angular.module('starter', ['ionic', 'ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-  });
+  })
 })
+
+.controller('myCtrl', function($scope, $cordovaOauth){
+
+  $scope.facebookLogin = function() {
+    $cordovaOauth.facebook("478858562280070", ["email"]).then(function(result){
+        $scope.data = result.access_token;
+    }, function(error){
+      alert("Error : " + error);
+    });
+  }
+});
