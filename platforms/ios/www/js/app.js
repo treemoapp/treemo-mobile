@@ -27,4 +27,45 @@ angular.module('starter', ['ionic', 'ngCordova'])
       alert("Error : " + error);
     });
   }
+})
+
+.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
+
+  var self = this;
+
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      var lat  = position.coords.latitude
+      var lng = position.coords.longitude
+      $scope.position = lat + lng
+      console.log(self.position)
+    }, function(err) {
+      // error
+    });
+
+
+  var watchOptions = {
+    frequency : 1000,
+    timeout : 3000,
+    enableHighAccuracy: false // may cause errors if true
+  };
+
+  var watch = $cordovaGeolocation.watchPosition(watchOptions);
+  watch.then(
+    null,
+    function(err) {
+      // error
+    },
+    function(position) {
+      var lat  = position.coords.latitude
+      var lng = position.coords.longitude
+      $scope.position = lat + lng
+  });
+
+
+  watch.clearWatch();
+
 });
+

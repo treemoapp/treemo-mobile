@@ -30,6 +30,9 @@
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
     <name>treemo</name>
     <description>
         An Ionic Framework and Cordova project.

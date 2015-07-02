@@ -17,8 +17,6 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-    <script src="lib/ng-cordova-oauth/ng-cordova-oauth.min.js"></script>
-    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -32,11 +30,17 @@
       </ion-header-bar>
 
       <ion-content ng-controller="myCtrl">
-      <button ng-click="facebookLogin()">Login with facebok!</button>
+        <button ng-click="facebookLogin()">Login with facebok!</button>
 
-<p> {{ data }} </p>
-
+        <p> here's the access token: {{ data }} </p>
       </ion-content>
+
+<!--       <ion-content ng-controller="GeoCtrl">
+
+        Your location: {{ position }}
+
+      </ion-content> -->
+
     </ion-pane>
   </body>
 </html>

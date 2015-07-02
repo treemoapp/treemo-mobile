@@ -57,7 +57,8 @@ module.exports.metadata =
     "cordova-plugin-device": "1.0.1",
     "cordova-plugin-splashscreen": "2.1.0",
     "cordova-plugin-whitelist": "1.0.0",
-    "cordova-plugin-inappbrowser": "1.0.2-dev"
+    "cordova-plugin-inappbrowser": "1.0.1",
+    "org.apache.cordova.geolocation": "0.3.12"
 }
 // BOTTOM OF METADATA
 });
