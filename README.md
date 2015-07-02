@@ -48,7 +48,10 @@ Project planning: https://drive.google.com/folderview?id=0B2Rum2zEpwhgT1NJTGlJc0
 
 You will need the following things properly installed on your computer.
 
-* ??
+* Node.js with NPM
+* Latest Cordova and Ionic CLIs (npm install -g cordova ionic)
+* Android platform (ionic platform add android)
+* Android Studio/Xcode for platform-specific emulators
 
 ### Project setup on local environment
 
