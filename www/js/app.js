@@ -19,26 +19,7 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
 
 });
 
-treemoApp.controller('GetLocationsController', function($scope, $http) {
-
-  $scope.getData = function() {
-		$http.get("http://treemo-dev.herokuapp.com/locations.json", {
-				params: {
-					"lat": "5.09703679",
-					"lng": "0.361858"
-				}
-			})
-			.success(function(data) {
-        $scope.locations = data
-			})
-			.error(function(data) {
-				alert("ERROR");
-			});
-	}
-
-});
-
-treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
+treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
   $scope.getPosition = function() {
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
@@ -46,8 +27,18 @@ treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
     .then(function (position) {
       var lat  = position.coords.latitude
       var long = position.coords.longitude
-      $scope.latitude = lat
-      $scope.longitude = long
+			$http.get("http://treemo-dev.herokuapp.com/locations.json", {
+					params: {
+						"lat": lat,
+						"lng": long
+					}
+				})
+				.success(function(data) {
+					$scope.locations = data
+				})
+				.error(function(data) {
+					alert("ERROR");
+				});
     }, function(err) {
       // error
     });

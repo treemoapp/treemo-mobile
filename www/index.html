@@ -31,15 +31,11 @@
 			<h1 class="title">Treemo App</h1>
 		</ion-header-bar>
 		<ion-content>
-      <section ng-controller="GeoCtrl">
-				<button class="button" ng-click="getPosition()">Get position</button>
-        {{ latitude }} {{ longitude }}
 
-      </section>
-			<section ng-controller="GetLocationsController">
-				<button class="button" ng-click="getData()">Get locations</button>
+			<section ng-controller="GeoCtrl">
+				<button class="button" ng-click="getPosition()">Get locations</button>
 				<div ng-repeat="location in locations">
-					{{location.name}} {{location.distance | number:2}} miles
+					{{location.name}} {{location.distance | number:2}} miles away
 
 					<a href="#">POST</a>
 				</div>
