@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
 
+
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -20,27 +21,51 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
 });
 
 treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
-  $scope.getPosition = function() {
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
-			$http.get("http://treemo-dev.herokuapp.com/locations.json", {
-					params: {
-						"lat": lat,
-						"lng": long
-					}
-				})
-				.success(function(data) {
-					$scope.locations = data
-				})
-				.error(function(data) {
-					alert("ERROR");
-				});
-    }, function(err) {
-      // error
-    });
-  }
+	$scope.getPosition = function() {
+		var posOptions = {
+			timeout: 10000,
+			enableHighAccuracy: false
+		};
+		$cordovaGeolocation
+			.getCurrentPosition(posOptions)
+			.then(function(position) {
+				var lat = position.coords.latitude
+				var long = position.coords.longitude
+				$http.get("http://localhost:3000/locations.json", {
+						params: {
+							"lat": lat,
+							"lng": long
+						}
+					})
+					.success(function(data) {
+						$scope.locations = data
+					})
+					.error(function(data) {
+						alert("ERROR");
+					});
+			}, function(err) {
+				// error
+			});
+	}
+
+	$scope.postCheckin = function() {
+		var checkin = {
+			checkin:  {
+				fb_user_id: "0788777066516312", fb_location_id: "6716731771511462"
+			}
+		}
+
+		var res = $http({
+			method: 'POST',
+			url: 'http://localhost:3000/checkins.json',
+			headers: {'Content-Type': 'application/json'},
+			data: checkin
+		}).then(
+			function() {
+				alert('It worked!');
+			},
+			function() {
+				alert('Fuck.');
+			});
+	};
 });

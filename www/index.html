@@ -39,11 +39,12 @@
 					</button>
 
 
+
 				<ion-list>
 					<ion-item ng-repeat="location in locations">
 						<div>
 							<h2>{{location.name}}</h2>
-							<h3>{{location.distance | number:2}} miles away</h3>
+							<h3>{{location.distance | number:2}} miles away</h3><button class="button button-outline button-balanced" ng-click="postCheckin()">POST</button>
 						</div>
 					</ion-item>
 				</ion-list>
