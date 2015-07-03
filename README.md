@@ -37,6 +37,8 @@ You will need the following things properly installed on your computer.
 
 ### Project setup on local environment
 
+`ionic state restore` (will read package.json file and update platform/plugin dependencies)
+
 #### Serve ios & android in browser
 
 `ionic serve --lab`
