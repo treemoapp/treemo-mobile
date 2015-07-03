@@ -1,35 +1,15 @@
 # treemo-mobile
 
-https://www.youtube.com/watch?v=GKo-Sh5F9QM
-
-Contribute to global reforestation, one check-in at a time - web & mobile app @ Makers Academy - Final Project
-
-Kanban board: https://waffle.io/treemoapp/treemo-mob
+Kanban board: https://waffle.io/treemoapp/treemo-mobile
 
 Project planning: https://drive.google.com/folderview?id=0B2Rum2zEpwhgT1NJTGlJc05LV0E&usp=sharing
 
-## Goals for app
-- Raise awareness and funds for reforestation programs
-- Leverage social media for social good
+## MVP mobile app
 
-## Backlog
+- Facebook login using oauth
+- Get locations nearby (GET api + lat/lng)
+- Check-in to location: logs on treemo web + posts facebook update (POST api)
 
-- [ ] Billing
-- [ ] Stats
-- [ ] Provide user data to business owners
-- [ ] Additional integration - Twitter, Instagram etc
-- [ ] Geofencing
-- [ ] Scalability
-- [ ] Sticker package logistics
-- [ ] Responsive: mobile & tablet
-- [ ] Customer feedback
-- [ ] Location beacons
-- [ ] FB 'Like our page'
-
-## User personas
-
-- [ ] Users - customer, business owner
-- [ ] admin
 
 ## What's going to give?
 
@@ -42,16 +22,28 @@ Project planning: https://drive.google.com/folderview?id=0B2Rum2zEpwhgT1NJTGlJc0
 |UX/DESIGN   |   |   |   | X |   |
 
 ## Tech stack - mobile
-- ???
+- ionic: http://ionicframework.com/
+- Apache cordova: https://cordova.apache.org/
+- ngCordova: http://ngcordova.com/
 
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
-* ??
+* Node.js with NPM
+* Latest Cordova and Ionic CLIs (npm install -g cordova ionic)
+* Android platform (ionic platform add android)
+* Android Studio/Xcode for platform-specific emulators
 
 ### Project setup on local environment
 
-#### Tests
+#### Serve ios & android in browser
 
-Reset database:
+`ionic serve --lab`
+
+#### Run app in simulators
+`ionic emulate ios`  
+`ionic emulate android`
+
+
+#### Tests
