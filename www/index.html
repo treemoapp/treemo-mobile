@@ -30,17 +30,22 @@
 		<ion-header-bar class="bar-stable">
 			<h1 class="title">Treemo App</h1>
 		</ion-header-bar>
-		<ion-content ng-controller="GetLocationsController">
-			<button class="button" ng-click="getData()">Get locations</button>
-      <div ng-repeat = "location in locations">
-        {{location.name}}
-        {{location.distance | number:2}} miles
+		<ion-content>
+      <section ng-controller="GeoCtrl">
+				<button class="button" ng-click="getPosition()">Get position</button>
+        {{ latitude }} {{ longitude }}
 
-        <a href="#">POST</a>
-      </div>
-      </div>
+      </section>
+			<section ng-controller="GetLocationsController">
+				<button class="button" ng-click="getData()">Get locations</button>
+				<div ng-repeat="location in locations">
+					{{location.name}} {{location.distance | number:2}} miles
 
-      </ion-content>
+					<a href="#">POST</a>
+				</div>
+				</div>
+			</section>
+		</ion-content>
 	</ion-pane>
 </body>
 

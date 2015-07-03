@@ -37,3 +37,19 @@ treemoApp.controller('GetLocationsController', function($scope, $http) {
 	}
 
 });
+
+treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation) {
+  $scope.getPosition = function() {
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      var lat  = position.coords.latitude
+      var long = position.coords.longitude
+      $scope.latitude = lat
+      $scope.longitude = long
+    }, function(err) {
+      // error
+    });
+  }
+});
