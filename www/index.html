@@ -42,9 +42,9 @@
 
 				<ion-list>
 					<ion-item ng-repeat="location in locations">
-						<div>
-							<h2>{{location.name}}</h2>
-							<h3>{{location.distance | number:2}} miles away</h3><button class="button button-outline button-balanced" ng-click="postCheckin()">POST</button>
+						<div class ="item-button-right">
+							<h2>{{location.name}}</h2><h3>({{location.distance | number:2}} miles away)</h3>
+							<button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
 						</div>
 					</ion-item>
 				</ion-list>

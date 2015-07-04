@@ -5,7 +5,6 @@
 // the 2nd parameter is an array of 'requires'
 var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
 
-
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -48,10 +47,11 @@ treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
 			});
 	}
 
-	$scope.postCheckin = function() {
+	$scope.postCheckin = function(location) {
+		var user_id = 1634874372145647
 		var checkin = {
 			checkin:  {
-				fb_user_id: "0788777066516312", fb_location_id: "6716731771511462"
+				fb_user_id: user_id, fb_location_id: location
 			}
 		}
 
@@ -62,10 +62,10 @@ treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
 			data: checkin
 		}).then(
 			function() {
-				alert('It worked!');
+				alert('Check-in successful!!');
 			},
 			function() {
-				alert('Fuck.');
+				alert('Broken');
 			});
 	};
 });
