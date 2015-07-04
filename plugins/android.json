@@ -53,13 +53,13 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.treemo413947"
         },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.treemo413947"
+        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.treemo413947"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.treemo413947"
-        },
-        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.treemo413947"
         }
     },
