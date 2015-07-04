@@ -20,27 +20,52 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
 });
 
 treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
-  $scope.getPosition = function() {
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
-			$http.get("http://treemo-dev.herokuapp.com/locations.json", {
-					params: {
-						"lat": lat,
-						"lng": long
-					}
-				})
-				.success(function(data) {
-					$scope.locations = data
-				})
-				.error(function(data) {
-					alert("ERROR");
-				});
-    }, function(err) {
-      // error
-    });
-  }
+	$scope.getPosition = function() {
+		var posOptions = {
+			timeout: 10000,
+			enableHighAccuracy: false
+		};
+		$cordovaGeolocation
+			.getCurrentPosition(posOptions)
+			.then(function(position) {
+				var lat = position.coords.latitude
+				var long = position.coords.longitude
+				$http.get("http://localhost:3000/locations.json", {
+						params: {
+							"lat": lat,
+							"lng": long
+						}
+					})
+					.success(function(data) {
+						$scope.locations = data
+					})
+					.error(function(data) {
+						alert("ERROR");
+					});
+			}, function(err) {
+				// error
+			});
+	}
+
+	$scope.postCheckin = function(location) {
+		var user_id = 1634874372145647
+		var checkin = {
+			checkin:  {
+				fb_user_id: user_id, fb_location_id: location
+			}
+		}
+
+		var res = $http({
+			method: 'POST',
+			url: 'http://localhost:3000/checkins.json',
+			headers: {'Content-Type': 'application/json'},
+			data: checkin
+		}).then(
+			function() {
+				alert('Check-in successful!!');
+			},
+			function() {
+				alert('Broken');
+			});
+	};
 });
