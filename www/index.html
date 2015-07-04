@@ -40,10 +40,10 @@
 					<button class="button button-block button-positive" ng-click="fbLogin()">
           Login with Facebook
           </button>
-
+<!-- 
           <button class="button button-block button-positive" href="#/app/profile">
           Profile
-          </button>
+          </button> -->
 
 					<button class="button button-full button-balanced" ng-click="getPosition()">
 						<i class="icon ion-map"></i> Get locations
@@ -51,9 +51,13 @@
 
 				<ion-list>
 					<ion-item ng-repeat="location in locations">
-						<div>
-							<h2>{{location.name}}</h2>
-							<h3>{{location.distance | number:2}} miles away</h3><button class="button button-outline button-balanced" ng-click="postCheckin()">POST</button>
+						<div class ="item-button-right">
+							<h2>{{location.name}}</h2><h3>({{location.distance | number:2}} miles away)</h3>
+							<button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
+							<a class="tab-item" ng-click="share()">
+    						<i class="icon ion-share"></i>
+    						Share
+							</a>
 						</div>
 					</ion-item>
 				</ion-list>

@@ -5,7 +5,6 @@
 // the 2nd parameter is an array of 'requires'
 var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova', 'ngOpenFB'])
 
-
 .run(function($ionicPlatform, ngFB) {
 	$ionicPlatform.ready(function() {
 		ngFB.init({appId: '478858562280070'});
@@ -92,26 +91,41 @@ treemoApp.controller('AppCtrl', function($scope, $ionicModal, $timeout, ngFB, $c
 			});
 	}
 
-	// $scope.postCheckin = function() {
-	// 	var checkin = {
-	// 		checkin:  {
-	// 			fb_user_id: "0788777066516312", fb_location_id: "6716731771511462"
-	// 		}
-	// 	}
+	$scope.postCheckin = function(location) {
+		var user_id = 1634874372145647
+		var checkin = {
+			checkin:  {
+				fb_user_id: user_id, fb_location_id: location
+			}
+		}
 
-	// 	var res = $http({
-	// 		method: 'POST',
-	// 		url: 'http://localhost:3000/checkins.json',
-	// 		headers: {'Content-Type': 'application/json'},
-	// 		data: checkin
-	// 	}).then(
-	// 		function() {
-	// 			alert('It worked!');
-	// 		},
-	// 		function() {
-	// 			alert('Fuck.');
-	// 		});
-	// };
+		var res = $http({
+			method: 'POST',
+			url: 'http://localhost:3000/checkins.json',
+			headers: {'Content-Type': 'application/json'},
+			data: checkin
+		}).then(
+			function() {
+				alert('Check-in successful!!');
+			},
+			function() {
+				alert('Broken');
+			});
+	}
 
-		
+	$scope.share = function (event) {
+    ngFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "Posted from Treemo!"
+        }
+    }).then(
+        function () {
+            alert('Posted on Facebook');
+        },
+        function () {
+            alert('An error occurred while sharing this on Facebook');
+        });
+	}
 });
