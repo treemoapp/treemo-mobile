@@ -20,6 +20,8 @@
 	<script src="lib/ngCordova/dist/ng-cordova.js"></script>
 	<script src="cordova.js"></script>
 	
+	<!-- google maps javascript -->
+	<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAk6EavZLcGr8bz1cJ6MAAEV0EBw1cumXc&sensor=true"></script>
 
 	<!-- your app's js -->
 	<script src="js/openfb.js"></script>
@@ -30,10 +32,12 @@
 <body ng-app="treemoApp">
 
 	<ion-pane>
-		<ion-header-bar class="bar-stable">
+		<ion-header-bar class="bar-stable" ng-init="init()">
 			<h1 class="title">Treemo App</h1>
 		</ion-header-bar>
-		<ion-content>
+		<ion-content ng-controller="MapCtrl">
+
+				<div id="map" data-tap-disabled="true"></div>
 
 			<section ng-controller="AppCtrl">
 
