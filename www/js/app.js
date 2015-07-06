@@ -30,7 +30,7 @@ treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
 			.then(function(position) {
 				var lat = position.coords.latitude
 				var long = position.coords.longitude
-				$http.get("http://localhost:3000/locations.json", {
+				$http.get("http://treemo-dev.herokuapp.com/locations.json", {
 						params: {
 							"lat": lat,
 							"lng": long
@@ -57,7 +57,7 @@ treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
 
 		var res = $http({
 			method: 'POST',
-			url: 'http://localhost:3000/checkins.json',
+			url: 'http://treemo-dev.herokuapp.com/checkins.json',
 			headers: {'Content-Type': 'application/json'},
 			data: checkin
 		}).then(
