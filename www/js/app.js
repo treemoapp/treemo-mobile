@@ -3,10 +3,11 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ngCordova'])
+var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ngCordova', 'ngOpenFB'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, ngFB) {
 	$ionicPlatform.ready(function() {
+		ngFB.init({appId: '478858562280070'});
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
 		if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -50,7 +51,7 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ng
       views: {
         'tab-checkin': {
           templateUrl: 'templates/tab-checkin.html',
-          controller: 'CheckinCtrl'
+          controller: 'MapCtrl'
         }
       }
     })
