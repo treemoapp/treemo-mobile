@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
               window.localStorage.setItem('FBuserID', data.id);
               window.localStorage.setItem('FBuserName', data.name);
               window.localStorage.setItem('FBuserLocale', data.locale);
-              console.log(data)
+              $scope.user = data;
               openFB.api({
                 path: '/me/picture',
                 params: {redirect:false},
@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
   // Check if this works when deployed!
   openFB.logout(function(){
     window.localStorage.clear();
-    $state.go('tab.home');
+    $state.go('login');
   })
 })
 

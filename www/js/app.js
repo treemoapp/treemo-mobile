@@ -36,11 +36,11 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
 
   // Each tab has its own nav history stack:
 
-  .state('tab.home', {
-    url: '/home',
+  .state('tab.profile', {
+    url: '/profile',
     views: {
-      'tab-home': {
-        templateUrl: 'templates/tab-home.html',
+      'tab-profile': {
+        templateUrl: 'templates/tab-profile.html',
         controller: 'FrontPageCtrl'
       }
     }
@@ -66,12 +66,18 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
     }
   })
 
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'FrontPageCtrl'
+  })
+
   .state('logout', {
       url: '/logout',
       controller: 'LogoutCtrl'
   })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/checkin');
+  $urlRouterProvider.otherwise('/login');
 
 });
