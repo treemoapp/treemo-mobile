@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User) {
+.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User, ngFB) {
 
   openFB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
@@ -34,11 +34,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LogoutCtrl', function ($scope, $state) {
-  // Check if this works when deployed!
-  openFB.logout(function(){
-    window.localStorage.clear();
-    $state.go('login');
-  })
+  $scope.logout = function() {
+    openFB.logout(function(){
+      window.localStorage.clear();
+      $state.go('login');
+    })
+  }
 })
 
 .controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {

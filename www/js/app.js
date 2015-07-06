@@ -73,8 +73,13 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
   })
 
   .state('logout', {
-      url: '/logout',
-      controller: 'LogoutCtrl'
+    url: '/logout',
+    views: {
+      'login': {
+        templateUrl: 'templates/login.html',
+        controller: 'LogoutCtrl'
+      }
+    }
   })
 
   // if none of the above states are matched, use this as the fallback
