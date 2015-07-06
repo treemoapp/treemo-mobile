@@ -1,8 +1,8 @@
 <ion-view title="Checkin">
     <ion-content padding="true" class="has-header">
-    <section ng-controller="GeoCtrl">
+    <section ng-controller="GeoCtrl" data-ng-init="getPosition()">
       <button class="button button-full button-balanced" ng-click="getPosition()">
-            <i class="icon ion-map"></i> Get locations
+            <i class="icon ion-refresh"></i> Refresh Locations
           </button>
         <form>
             <ion-list>
