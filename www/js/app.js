@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
+var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ngCordova'])
 
 .run(function($ionicPlatform) {
 	$ionicPlatform.ready(function() {
@@ -13,59 +13,59 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'ngCordova'])
 			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 		}
 		if (window.StatusBar) {
-			StatusBar.styleDefault();
+			StatusBar.styleLightContent();
 		}
 	});
+})
 
-});
+.config(function($stateProvider, $urlRouterProvider) {
 
-treemoApp.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
-	$scope.getPosition = function() {
-		var posOptions = {
-			timeout: 10000,
-			enableHighAccuracy: false
-		};
-		$cordovaGeolocation
-			.getCurrentPosition(posOptions)
-			.then(function(position) {
-				var lat = position.coords.latitude
-				var long = position.coords.longitude
-				$http.get("http://localhost:3000/locations.json", {
-						params: {
-							"lat": lat,
-							"lng": long
-						}
-					})
-					.success(function(data) {
-						$scope.locations = data
-					})
-					.error(function(data) {
-						alert("ERROR");
-					});
-			}, function(err) {
-				// error
-			});
-	}
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
 
-	$scope.postCheckin = function(location) {
-		var user_id = 1634874372145647
-		var checkin = {
-			checkin:  {
-				fb_user_id: user_id, fb_location_id: location
-			}
-		}
+  // setup an abstract state for the tabs directive
+    .state('tab', {
+    url: "/tab",
+    abstract: true,
+    templateUrl: "templates/tabs.html"
+  })
 
-		var res = $http({
-			method: 'POST',
-			url: 'http://localhost:3000/checkins.json',
-			headers: {'Content-Type': 'application/json'},
-			data: checkin
-		}).then(
-			function() {
-				alert('Check-in successful!!');
-			},
-			function() {
-				alert('Broken');
-			});
-	};
+  // Each tab has its own nav history stack:
+
+  .state('tab.home', {
+    url: '/home',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/tab-home.html',
+        controller: 'HomeCtrl'
+      }
+    }
+  })
+
+  .state('tab.checkin', {
+      url: '/checkin',
+      views: {
+        'tab-checkin': {
+          templateUrl: 'templates/tab-checkin.html',
+          controller: 'CheckinCtrl'
+        }
+      }
+    })
+    
+  .state('tab.map', {
+    url: '/map',
+    views: {
+      'tab-map': {
+        templateUrl: 'templates/tab-map.html',
+        controller: 'MapCtrl'
+      }
+    }
+  });
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/tab/home');
+
 });
