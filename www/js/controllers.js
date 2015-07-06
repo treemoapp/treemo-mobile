@@ -1,48 +1,44 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, $ionicModal, $timeout, ngFB, $cordovaGeolocation, $http) {
+.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User) {
 
-  $scope.loginData = {};
+  openFB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      $state.go('tab.checkin');
+    } else {
+      $scope.login = function(){
+        openFB.login(function(response) {
+          if(response.status === 'connected') {
+            openFB.api({path: '/me', success: function(data){
+              window.localStorage.setItem('FBuserID', data.id);
+              window.localStorage.setItem('FBuserName', data.name);
+              window.localStorage.setItem('FBuserLocale', data.locale);
+              console.log(data)
+              openFB.api({
+                path: '/me/picture',
+                params: {redirect:false},
+                success: function(data) {
+                  window.localStorage.setItem('FBuserPic', data.data.url);
+                  $state.go('tab.checkin');
+                },
+                error: function(err) {console.log(err);}
+              });
+            }, error: function(err) {console.log(err);}});
+          } else {
+            alert('Facebook login failed: ' + response.error);
+          }
+        }, {scope: 'email, user_friends'});
+      };
+    }
+  })
+})
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-
-  $scope.fbLogin = function() {
-    ngFB.login({scope: 'email, read_stream, publish_actions'}).then(
-      function (response) {
-        if (response.status === 'connected') {
-          alert('Facebook login succeeded');
-          $scope.closeLogin();
-        } else {
-          alert('Facebook login failed');
-        }
-      });
-  }
+.controller('LogoutCtrl', function ($scope, $state) {
+  // Check if this works when deployed!
+  openFB.logout(function(){
+    window.localStorage.clear();
+    $state.go('tab.home');
+  })
 })
 
 .controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
@@ -74,7 +70,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.postCheckin = function(location) {
-    var user_id = 1634874372145647
+    var user_id = window.localStorage.FBuserID
     var checkin = {
       checkin:  {
         fb_user_id: user_id, fb_location_id: location

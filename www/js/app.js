@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ngCordova', 'ngOpenFB'])
+var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'ngOpenFB'])
 
 .run(function($ionicPlatform, ngFB) {
 	$ionicPlatform.ready(function() {
@@ -41,20 +41,20 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ng
     views: {
       'tab-home': {
         templateUrl: 'templates/tab-home.html',
-        controller: 'HomeCtrl'
+        controller: 'FrontPageCtrl'
       }
     }
   })
 
   .state('tab.checkin', {
-      url: '/checkin',
-      views: {
-        'tab-checkin': {
-          templateUrl: 'templates/tab-checkin.html',
-          controller: 'MapCtrl'
-        }
+    url: '/checkin',
+    views: {
+      'tab-checkin': {
+        templateUrl: 'templates/tab-checkin.html',
+        controller: 'GeoCtrl'
       }
-    })
+    }
+  })
     
   .state('tab.map', {
     url: '/map',
@@ -64,9 +64,14 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'ng
         controller: 'MapCtrl'
       }
     }
-  });
+  })
+
+  .state('logout', {
+      url: '/logout',
+      controller: 'LogoutCtrl'
+  })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/checkin');
 
 });
