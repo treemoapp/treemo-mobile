@@ -41,7 +41,7 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
     views: {
       'tab-profile': {
         templateUrl: 'templates/tab-profile.html',
-        controller: 'FrontPageCtrl'
+        controller: 'ProfileCtrl'
       }
     }
   })

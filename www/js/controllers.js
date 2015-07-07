@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 
   openFB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
-      $state.go('tab.checkin');
+      $state.go('tab.profile');
     } else {
       $scope.login = function(){
         openFB.login(function(response) {
@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
                 params: {redirect:false},
                 success: function(data) {
                   window.localStorage.setItem('FBuserPic', data.data.url);
-                  $state.go('tab.checkin');
+                  $state.go('tab.profile');
                 },
                 error: function(err) {console.log(err);}
               });
@@ -40,6 +40,19 @@ angular.module('starter.controllers', [])
       $state.go('login');
     })
   }
+})
+
+.controller('ProfileCtrl', function ($scope, ngFB) {
+    ngFB.api({
+        path: '/me',
+        params: {fields: 'id,name'}
+    }).then(
+        function (user) {
+            $scope.user = user;
+        },
+        function (error) {
+            alert('Facebook error: ' + error.error_description);
+        });
 })
 
 .controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
