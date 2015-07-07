@@ -1,7 +1,11 @@
-<ion-view title="Checkin">
+<ion-view view-title="Checkin">
     <ion-content padding="true" class="has-header">
-    <section ng-controller="LocationCtrl">
+    <section ng-controller="GeoCtrl">
         {{location.name}}
+        <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
       </section>
+      <section ng-controller="MapCtrl">
+      <div id="map" data-tap-disabled="true"></div>
+    </section>
     </ion-content>
 </ion-view>
