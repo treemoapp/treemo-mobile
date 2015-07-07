@@ -10,6 +10,10 @@
             <div class ="item-button-right">
               <h2>{{location.name}}</h2><h3>({{location.distance | number:2}} miles away)</h3>
               <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
+           <!--     <a class="tab-item" ng-click="share(location.facebook_id)">
+                 <i class="icon ion-share"></i>
+                 Share
+               </a> -->
             </div>
         </form>
       </section>

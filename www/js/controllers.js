@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
+.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http, ngFB) {
   $scope.getPosition = function() {
     var posOptions = {
       timeout: 10000,
@@ -98,12 +98,27 @@ angular.module('starter.controllers', [])
       data: checkin
     }).then(
       function() {
-        alert('Check-in successful!!');
+        console.log('Check-in successful!!');
       },
       function() {
-        alert('Broken');
+        console.log('Broken');
       });
-  };
+
+    ngFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "I just checked in with Treemo and planted a tree!", 
+            place: location
+        }
+    }).then(
+        function () {
+            alert('Posted on Facebook');
+        },
+        function () {
+            alert('An error occurred while sharing this on Facebook');
+        });
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
