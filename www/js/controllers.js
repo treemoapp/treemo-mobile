@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
-.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User, ngFB) {
+.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User, ngFB, $http) {
 
   openFB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
@@ -31,6 +31,16 @@ angular.module('starter.controllers', [])
       };
     }
   })
+
+  $http.get("http://treemo-dev.herokuapp.com/checkins.json", {
+        
+          })
+          .success(function(checkin) {
+            $scope.checkins = checkin
+          })
+          .error(function(checkin) {
+            alert("ERROR");
+          });
 })
 
 .controller('LogoutCtrl', function ($scope, $state) {
@@ -53,6 +63,12 @@ angular.module('starter.controllers', [])
         function (error) {
             alert('Facebook error: ' + error.error_description);
         });
+})
+
+.controller('LocationCtrl', function($scope, $stateParams, Location) {
+    Location.get({locationId: $stateParams.locationId}, function(response){
+      $scope.location = response
+    });
 })
 
 .controller('GeoCtrl', function($scope, $cordovaGeolocation, $http, ngFB) {

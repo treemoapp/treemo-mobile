@@ -1,4 +1,8 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngResource'])
+
+.factory('Location', function ($resource) {
+  return $resource("http://treemo-dev.herokuapp.com/locations/:locationId.json");
+})
 
 .factory('Auth', function ($http, $state, $window) {
   //authorization is currently nonfunctional
