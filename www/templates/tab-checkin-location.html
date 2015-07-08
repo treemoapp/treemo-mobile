@@ -1,11 +1,23 @@
 <ion-view view-title="">
     <ion-content padding="true" class="has-header">
     <section ng-controller="GeoCtrl">
-        {{location.name}}
-        <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
-      </section>
-      <section ng-controller="MapCtrl">
-      <div id="map" data-tap-disabled="true"></div>
+      <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
     </section>
+    <section ng-controller="FBPageCtrl" data-ng-init="getPosition()">
+      <center><h1>{{page.name}}</h1></center>
+      <center>Category - {{page.category}}</center><br>
+      <center><p>{{page.about}}</p></center>
+      
+      <center><img class="fb-cover" ng-src="{{page.cover.source}}"></center>
+      <center>{{page.location.street}}</center>
+      <center>{{page.location.zip}}</center>
+      <center>{{page.website}}</center>
+    </section>
+
+    <section>
+    <ng-controller="MapCtrl" data-tap-disabled="true" scroll="false">
+      <div id="map" ></div>
+    </section>
+      
     </ion-content>
 </ion-view>
