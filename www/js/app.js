@@ -46,12 +46,22 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
     }
   })
 
-  .state('tab.checkin', {
+  .state('tab.checkins', {
     url: '/checkin',
     views: {
       'tab-checkin': {
         templateUrl: 'templates/tab-checkin.html',
         controller: 'GeoCtrl'
+      }
+    }
+  })
+
+   .state('tab.checkin', {
+    url: '/checkin/:locationId',
+    views: {
+      'tab-checkin': {
+        templateUrl: 'templates/tab-checkin-location.html',
+        controller: 'LocationCtrl'
       }
     }
   })

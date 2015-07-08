@@ -1,13 +1,16 @@
 <ion-view title="Profile">
-    <ion-content has-header="true" padding="true">
+  <ion-content has-header="true" padding="true">
+     
 
-        <div class="list card">
-            <div class="item">
-                <h2>{{user.name}}</h2>
-            </div>
-            <div class="item item-body">
-                <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
-            </div>
-        </div>
+      <center><h2>{{user.name}}</h2></center>
+      
+    <center><img src="http://graph.facebook.com/{{user.id}}/picture?width=150&height=150"/></center>
+
+    <ng-controller="ProfileCtrl">
+          <center> <h1>{{checkins.length}}</h1> </center>
+          <center> <h3>trees planted so far</h3> </center>
+          <center> <h5>Treemo: reforestation, one check-in at a time</h5> </center>
     </ion-content>
+  
+
 </ion-view>

@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
-.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User, ngFB) {
+.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User, ngFB, $http) {
 
   openFB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
@@ -31,6 +31,16 @@ angular.module('starter.controllers', [])
       };
     }
   })
+
+  $http.get("http://treemo-dev.herokuapp.com/checkins.json", {
+        
+          })
+          .success(function(checkin) {
+            $scope.checkins = checkin
+          })
+          .error(function(checkin) {
+            alert("ERROR");
+          });
 })
 
 .controller('LogoutCtrl', function ($scope, $state) {
@@ -42,7 +52,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ProfileCtrl', function ($scope, ngFB) {
+.controller('ProfileCtrl', function($scope, ngFB, $http) {
     ngFB.api({
         path: '/me',
         params: {fields: 'id,name'}
@@ -52,10 +62,27 @@ angular.module('starter.controllers', [])
         },
         function (error) {
             alert('Facebook error: ' + error.error_description);
-        });
+        })
+
+    $http.get("http://treemo-dev.herokuapp.com/checkins.json", {
+        
+          })
+          .success(function(checkin) {
+            $scope.checkins = checkin
+          })
+          .error(function(checkin) {
+            alert("ERROR");
+          });
+
 })
 
-.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
+.controller('LocationCtrl', function($scope, $stateParams, Location) {
+    Location.get({locationId: $stateParams.locationId}, function(response){
+      $scope.location = response
+    });
+})
+
+.controller('GeoCtrl', function($scope, $cordovaGeolocation, $http, ngFB) {
   $scope.getPosition = function() {
     var posOptions = {
       timeout: 10000,
@@ -98,12 +125,27 @@ angular.module('starter.controllers', [])
       data: checkin
     }).then(
       function() {
-        alert('Check-in successful!!');
+        console.log('Check-in successful!!');
       },
       function() {
-        alert('Broken');
+        console.log('Broken');
       });
-  };
+
+    ngFB.api({
+        method: 'POST',
+        path: '/me/feed',
+        params: {
+            message: "I just checked in with Treemo and planted a tree!", 
+            place: location
+        }
+    }).then(
+        function () {
+            alert('Posted on Facebook');
+        },
+        function () {
+            alert('An error occurred while sharing this on Facebook');
+        });
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $compile) {
