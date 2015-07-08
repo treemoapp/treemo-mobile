@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-	<title></title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>Treemo</title>
 
-	<link href="lib/ionic/css/ionic.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
 
-	<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+		<!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+	    <link href="css/ionic.app.css" rel="stylesheet">
+	    -->
 
-	<!-- ionic/angularjs js -->
-	<script src="lib/ionic/js/ionic.bundle.js"></script>
-
-	<!-- cordova script (this will be a 404 during development) -->
-	<script src="lib/ngCordova/dist/ng-cordova.js"></script>
-	<script src="cordova.js"></script>
-
-	<!-- your app's js -->
-	<script src="js/app.js"></script>
-</head>
-
-<body ng-app="treemoApp">
-
-	<ion-pane>
-		<ion-header-bar class="bar-stable">
-			<h1 class="title">Treemo App</h1>
-		</ion-header-bar>
-		<ion-content>
-
-			<section ng-controller="GeoCtrl">
-
-					<button class="button button-full button-balanced" ng-click="getPosition()">
-						<i class="icon ion-map"></i> Get locations
-					</button>
+		<!-- ionic/angularjs js -->
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<script src="lib/ionic/js/angular/angular-resource.min.js"></script>
 
 
+		<!-- cordova script (this will be a 404 during development) -->
+		<script src="lib/ngCordova/dist/ng-cordova.js"></script>
+		<script src="cordova.js"></script>
 
-				<ion-list>
-					<ion-item ng-repeat="location in locations">
-						<div class ="item-button-right">
-							<h2>{{location.name}}</h2><h3>({{location.distance | number:2}} miles away)</h3>
-							<button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
-						</div>
-					</ion-item>
-				</ion-list>
-			</section>
-		</ion-content>
-	</ion-pane>
-</body>
+		<!-- Google Maps js -->
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+		<!-- your app's js -->
+		<script src="js/openfb.js"></script>
+		<script src="js/ngopenfb.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/services.js"></script>
+	</head>
+
+	<body ng-app="treemoApp">
+
+		<ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="right">
+        				<button class="button button-clear button-positive" side="right" ng-controller="LogoutCtrl" ng-click="logout()">Logout</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+		<!-- <ion-pane>
+			<ion-header-bar class="bar-stable">
+				<h1 class="title">Treemo App</h1>
+				<button class="button button-clear button-positive" ng-controller="LogoutCtrl" ng-click="logout()">Logout</button>
+			</ion-header-bar>
+		</ion-view> -->
+
+		<ion-nav-view>
+		</ion-nav-view>
+	</body>
 
 </html>

@@ -1,0 +1,23 @@
+<ion-view view-title="Checkin">
+    <ion-content padding="true" class="has-header">
+    <section ng-controller="GeoCtrl" data-ng-init="getPosition()">
+      <button class="button button-full button-balanced" ng-click="getPosition()">
+            <i class="icon ion-refresh"></i> Refresh Locations
+          </button>
+        <form>
+            <ion-list>
+            <ion-item ng-repeat="location in locations" href="#/tab/checkin/{{location.id}}">
+            <div class ="item-button-right">
+              <h2>{{location.name}}</h2><h3>({{location.distance | number:2}} miles away)</h3>
+              <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
+           <!--     <a class="tab-item" ng-click="share(location.facebook_id)">
+                 <i class="icon ion-share"></i>
+                 Share
+               </a> -->
+            </div>
+            </ion-item>
+            </ion-list
+        </form>
+      </section>
+    </ion-content>
+</ion-view>
