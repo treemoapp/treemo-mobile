@@ -1,10 +1,10 @@
 angular.module('starter.controllers', [])
 
-.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User) {
+.controller('FrontPageCtrl', function($scope, $state, $window, Auth, User, ngFB) {
 
   openFB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
-      $state.go('tab.checkin');
+      $state.go('tab.profile');
     } else {
       $scope.login = function(){
         openFB.login(function(response) {
@@ -13,13 +13,13 @@ angular.module('starter.controllers', [])
               window.localStorage.setItem('FBuserID', data.id);
               window.localStorage.setItem('FBuserName', data.name);
               window.localStorage.setItem('FBuserLocale', data.locale);
-              console.log(data)
+              $scope.user = data;
               openFB.api({
                 path: '/me/picture',
                 params: {redirect:false},
                 success: function(data) {
                   window.localStorage.setItem('FBuserPic', data.data.url);
-                  $state.go('tab.checkin');
+                  $state.go('tab.profile');
                 },
                 error: function(err) {console.log(err);}
               });
@@ -34,11 +34,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LogoutCtrl', function ($scope, $state) {
-  // Check if this works when deployed!
-  openFB.logout(function(){
-    window.localStorage.clear();
-    $state.go('tab.home');
-  })
+  $scope.logout = function() {
+    openFB.logout(function(){
+      window.localStorage.clear();
+      $state.go('login');
+    })
+  }
+})
+
+.controller('ProfileCtrl', function ($scope, ngFB) {
+    ngFB.api({
+        path: '/me',
+        params: {fields: 'id,name'}
+    }).then(
+        function (user) {
+            $scope.user = user;
+        },
+        function (error) {
+            alert('Facebook error: ' + error.error_description);
+        });
 })
 
 .controller('GeoCtrl', function($scope, $cordovaGeolocation, $http) {
