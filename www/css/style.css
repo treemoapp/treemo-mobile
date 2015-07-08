@@ -7,6 +7,11 @@
   height: 100%;
 }
 
+#map2 {
+  width: 10%;
+  height: 10%;
+}
+
 .fb-cover {
   width: 100%;
   height: auto;

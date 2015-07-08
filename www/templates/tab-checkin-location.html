@@ -3,7 +3,7 @@
     <section ng-controller="GeoCtrl">
       <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
     </section>
-    <section ng-controller="FBPageCtrl">
+    <section ng-controller="FBPageCtrl" data-ng-init="getPosition()">
       <center><h1>{{page.name}}</h1></center>
       <center>Category - {{page.category}}</center><br>
       <center><p>{{page.about}}</p></center>
@@ -15,7 +15,7 @@
     </section>
 
     <section>
-      <ng-controller="MapCtrl" data-tap-disabled="true" scroll="false">
+    <ng-controller="MapCtrl" data-tap-disabled="true" scroll="false">
       <div id="map" ></div>
     </section>
       
