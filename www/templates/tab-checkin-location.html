@@ -4,8 +4,17 @@
         {{location.name}}
         <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
       </section>
-      <section ng-controller="MapCtrl">
-      <div id="map" data-tap-disabled="true"></div>
+      <section ng-controller="FBPageCtrl">
+      {{page.name}}
+      {{page.about}}
+      {{page.category}}
+
+
+
+      {{page.location.street}}
+      {{page.location.zip}}
+
+
     </section>
     </ion-content>
 </ion-view>

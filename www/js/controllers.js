@@ -209,4 +209,17 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.clickTest = function() {
         alert('Example of infowindow with ng-click')
     };
-});
+})
+
+.controller('FBPageCtrl', function($scope, ngFB, $http) {
+        
+    ngFB.api({
+        path: '/367457470014643'
+    }).then(
+        function (page) {
+            $scope.page = page;
+        },
+        function (error) {
+            alert('Facebook error: ' + error.error_description);
+        })
+  });
