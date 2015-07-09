@@ -4,7 +4,7 @@ body {
 
 .scroll-content{
 
- background: url(../img/background.png) no-repeat center center fixed; 
+ background: url(../img/background1.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -35,4 +35,11 @@ img {
 
 .item-complex .item-content, .item {
   background-color: rgba(0,0,0,0);
+}
+
+.ion-chevron-right {
+  color: white;
+}
+
+.bar.bar-positive { 
 }
