@@ -1,8 +1,3 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'ngOpenFB'])
 
 .run(function($ionicPlatform, ngFB) {
@@ -20,6 +15,7 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
