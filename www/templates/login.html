@@ -1,16 +1,9 @@
 <ion-view hide-nav-bar="true" title="Login">
     <ion-content padding="true" has-header="false">
-        <form>
-            <ion-list></ion-list>
-            <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; width: 100%; height: auto; background-color: rgb(255, 255, 255);">
-                <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-            </div>
-            <button class="button button-stable button-block" ng-click="login()">Log in with Facebook</button>
-        </form>
-
         <ng-controller="FrontPageCtrl">
           <center> <h1>{{checkins.length}}</h1> </center>
           <center> <h3>trees planted so far</h3> </center>
           <center> <h5>Treemo: reforestation, one check-in at a time</h5> </center>
+          <button class="button button-positive icon-left ion-social-facebook" ng-click="login()">Log in with Facebook</button>
     </ion-content>
 </ion-view>

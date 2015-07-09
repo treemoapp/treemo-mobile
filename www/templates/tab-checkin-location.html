@@ -1,8 +1,6 @@
 <ion-view view-title="">
     <ion-content padding="true" class="has-header">
-    <section ng-controller="GeoCtrl">
-      <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
-    </section>
+    
     <section ng-controller="FacebookCtrl" data-ng-init="getPosition()">
       <center><h1>{{page.name}}</h1></center>
       <center>Category - {{page.category}}</center><br>
@@ -14,14 +12,8 @@
       <center>{{page.website}}</center>
     </section>
 
-    <section>
-    <ng-controller="MapCtrl" data-tap-disabled="true" scroll="false">
-      <div id="map" ></div>
-    </section>
-
-    <section>
-    <ng-controller="FacebookCtrl">
-    {{page.location.street}}
+    <section ng-controller="GeoCtrl">
+      <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
     </section>
       
     </ion-content>

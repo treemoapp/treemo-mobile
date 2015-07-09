@@ -3,6 +3,7 @@ body {
 }
 
 .scroll-content{
+
  background: url(../img/background.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -19,13 +20,19 @@ body {
   height: 100%;
 }
 
-#map2 {
-  width: 10%;
-  height: 10%;
-}
-
 .fb-cover {
   width: 100%;
   height: auto;
 }
 
+h1,h2,h3,h5 {
+  color: white;
+}
+
+img {
+  padding: 10px;
+}
+
+.item-complex .item-content, .item {
+  background-color: rgba(0,0,0,0);
+}
