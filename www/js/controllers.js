@@ -33,7 +33,7 @@ angular.module('starter.controllers', ['starter.services'])
   })
 
   $http.get("http://treemo-dev.herokuapp.com/checkins.json", {
-        
+
           })
           .success(function(checkin) {
             $scope.checkins = checkin
@@ -65,7 +65,7 @@ angular.module('starter.controllers', ['starter.services'])
         })
 
     $http.get("http://treemo-dev.herokuapp.com/checkins.json", {
-        
+
           })
           .success(function(checkin) {
             $scope.checkins = checkin
@@ -135,7 +135,7 @@ angular.module('starter.controllers', ['starter.services'])
         method: 'POST',
         path: '/me/feed',
         params: {
-            message: "I just checked in with Treemo and planted a tree!", 
+            message: "I just checked in with Treemo and planted a tree!",
             place: location
         }
     }).then(
@@ -169,15 +169,16 @@ angular.module('starter.controllers', ['starter.services'])
       };
 
       $scope.centerOnMe();
-        
+
         var mapOptions = {
           center: $scope.myLatlng,
           zoom: 16,
+          animation: google.maps.Animation.BOUNCE,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map"),
             mapOptions);
-        
+
         //Marker + infowindow + angularjs compiled ng-click
         var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
         var compiled = $compile(contentString)($scope);
@@ -186,41 +187,42 @@ angular.module('starter.controllers', ['starter.services'])
           content: compiled[0]
         });
 
-        var locations = new Array();
+        var locations = [
 
-        locations[0] = new google.maps.LatLng(51.51685988, -0.0732052);
-        locations[1] = new google.maps.LatLng(51.51798618, -0.07406074);
-        locations[2] = new google.maps.LatLng(51.51948618, -0.07536074);
-        locations[3] = new google.maps.LatLng(51.5174898, -0.07394074);
-        locations[4] = new google.maps.LatLng(51.51684618, -0.072927);
-        locations[5] = new google.maps.LatLng(51.518104, -0.074405);
+            ['Java U', 51.51685988, -0.0732052, 1],
+            ['Crisis Skylight Cafe', 51.51798618, -0.07406074, 2],
+            ['Spitalfields Market', 51.51948618, -0.07536074, 3],
+            ['Trade-Made', 51.5174898, -0.07394074, 4],
+            ['Culpeper', 51.51684618, -0.072927, 5],
+            ["Momo'wich", 51.518104, -0.074405, 6]
+            ];
 
-        $scope.createMarker = function(){
-          for(var i=0; i<locations.length; i++){
-            
-            var marker = new google.maps.Marker({
-            position: locations[i],
-            map: map,
-            icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/pink.png',
-            animation: google.maps.Animation.DROP,
-            title: ""
-            })
-            google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map,marker)
-            })
-          }
+        var infowindow = new google.maps.InfoWindow;
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+              map: map
+
+        });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
         }
-        
-
-        $scope.createMarker();
 
         $scope.map = map;
       }
       ionic.Platform.ready(initialize);
-    
+
     })
 
-    
+
 
 .controller('FBPageCtrl', function($scope, ngFB, $http) {
     ngFB.api({
