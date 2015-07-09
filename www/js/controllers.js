@@ -211,9 +211,9 @@ angular.module('starter.controllers', ['starter.services'])
     };
 })
 
-.controller('FBPageCtrl', function($scope, ngFB, $http) {
+.controller('FacebookCtrl', function($scope, $stateParams, ngFB) {
     ngFB.api({
-        path: '/367457470014643'
+        path: '/' + $stateParams.facebookId
     }).then(
         function (page) {
             $scope.page = page;

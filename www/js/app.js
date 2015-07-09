@@ -57,7 +57,7 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
   })
 
    .state('tab.checkin', {
-    url: '/checkin/:locationId',
+    url: '/checkin/:locationId?facebookId',
     views: {
       'tab-checkin': {
         templateUrl: 'templates/tab-checkin-location.html',
