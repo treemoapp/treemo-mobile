@@ -30,7 +30,8 @@ p,h1,h2,h3,h4,h5 {
 }
 
 img {
-  padding: 10px;
+  width: 50%;
+  height: 50%;
 }
 
 .item-complex .item-content, .item {
@@ -41,5 +42,10 @@ img {
   color: white;
 }
 
-.bar.bar-positive { 
+.bar.bar-positive {
+ 
+}
+
+h1 {
+  
 }

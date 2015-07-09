@@ -1,9 +1,17 @@
 <ion-view hide-nav-bar="true" title="Login">
     <ion-content padding="true" has-header="false">
         <ng-controller="FrontPageCtrl">
-          <center> <h1>{{checkins.length}}</h1> </center>
-          <center> <h3>trees planted so far</h3> </center>
-          <center> <h5>Treemo: reforestation, one check-in at a time</h5> </center>
-          <button class="button button-full button-positive icon-left ion-social-facebook" ng-click="login()">Log in with Facebook</button>
+          <div class="spacer" style="width: 300px; height: 80px;"></div>
+            <center> <h1>Treemo</h1> </center>
+            <div class="spacer" style="width: 300px; height: 30px;"></div> 
+            <center><h2>Reforestation,</h2></center>
+            <center><h3>one check-in at a time</h3></center>
+            <center><img src="img/icon-small.png"/></center>
+            <div class="spacer" style="width: 300px; height: 30px;"></div> 
+            <center> <h3>{{checkins.length}}</h3> </center>
+            <center> <h3>Trees planted so far</h3> </center>
+            <div class="spacer" style="width: 300px; height: 30px;"></div>    
+            <button class="button button-full button-positive icon-left ion-social-facebook" ng-click="login()">Log in with Facebook</button>
+          
     </ion-content>
 </ion-view>
