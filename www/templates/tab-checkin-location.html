@@ -3,17 +3,17 @@
     
     <section ng-controller="FacebookCtrl" data-ng-init="getPosition()">
       <center><h1>{{page.name}}</h1></center>
-      <center>Category - {{page.category}}</center><br>
+      <center><h5>Category - {{page.category}}</h5></center><br>
       <center><p>{{page.about}}</p></center>
       
       <center><img class="fb-cover" ng-src="{{page.cover.source}}"></center>
-      <center>{{page.location.street}}</center>
-      <center>{{page.location.zip}}</center>
-      <center>{{page.website}}</center>
+      <center><h5>{{page.location.street}}</h5></center>
+      <center><h5>{{page.location.zip}}</h5></center>
+      <center><h5>{{page.website}}</h5></center>
     </section>
 
     <section ng-controller="GeoCtrl">
-      <button class="button button-balanced icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
+      <button class="button button-full button-positive icon-left ion-ios-location" ng-click="postCheckin(location.facebook_id)">Check-in</button>
     </section>
       
     </ion-content>

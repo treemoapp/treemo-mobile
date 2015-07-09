@@ -6,7 +6,7 @@
           </button>
         <form>
             <ion-list>
-            <ion-item ng-repeat="location in locations" href="#/tab/checkin/{{location.id}}?facebookId={{location.facebook_id}}">
+            <ion-item ng-repeat="location in locations" href="#/tab/checkin/{{location.id}}?facebookId={{location.facebook_id}}"><i class="icon ion-chevron-right" style="color:#ccc; font-size:16px;"></i>
             <div class ="item-button-right">
               <h2>{{location.name}}</h2><h3>({{location.distance | number:2}} miles away)</h3>
             </div>
