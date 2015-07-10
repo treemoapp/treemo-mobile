@@ -35,7 +35,7 @@ img {
 }
 
 .item-complex .item-content, .item {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(10,10,10,0.3);
 }
 
 .ion-chevron-right {
@@ -52,4 +52,8 @@ h1 {
 
 #img {
   border-style: solid;
+}
+
+button .button button-block {
+  background-color: rgba(10,10,10,0.3);
 }
