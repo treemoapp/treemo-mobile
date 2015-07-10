@@ -4,7 +4,7 @@ body {
 
 .scroll-content{
 
- background: url(../img/background.png) no-repeat center center fixed; 
+ background: url(../img/background1.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -30,9 +30,26 @@ p,h1,h2,h3,h4,h5 {
 }
 
 img {
-  padding: 10px;
+  width: 50%;
+  height: 50%;
 }
 
 .item-complex .item-content, .item {
   background-color: rgba(0,0,0,0);
+}
+
+.ion-chevron-right {
+  color: white;
+}
+
+.bar.bar-positive {
+ 
+}
+
+h1 {
+
+}
+
+#img {
+  border-style: solid;
 }
