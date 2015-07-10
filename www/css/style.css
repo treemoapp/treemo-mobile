@@ -54,6 +54,10 @@ h1 {
   border-style: solid;
 }
 
-button .button button-block {
-  background-color: rgba(10,10,10,0.3);
+#refresh_button {
+  background-color: rgba(10,10,10,0.2);
+}
+
+.profile_pic {
+  border-style: groove;
 }
