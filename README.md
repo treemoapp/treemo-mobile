@@ -1,5 +1,17 @@
 # treemo-mobile
 
+Collaborators:
+-----
+
+[Tim Robertson](https://github.com/timrobertson0122)
+
+[Rodney Cullen](https://github.com/rodcul)
+
+[Dan Bolger](https://github.com/dan-bolger)
+
+[Fiona Abrams](https://github.com/smarbaf)
+
+
 Kanban board: https://waffle.io/treemoapp/treemo-mobile
 
 Project planning: https://drive.google.com/folderview?id=0B2Rum2zEpwhgT1NJTGlJc05LV0E&usp=sharing
