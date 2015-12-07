@@ -58,6 +58,3 @@ You will need the following things properly installed on your computer.
 #### Run app in simulators
 `ionic emulate ios`  
 `ionic emulate android`
-
-
-#### Tests
