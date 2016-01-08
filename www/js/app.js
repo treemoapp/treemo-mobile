@@ -61,7 +61,7 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
       }
     }
   })
-    
+
   .state('tab.map', {
     url: '/map',
     views: {
@@ -90,5 +90,4 @@ var treemoApp = angular.module('treemoApp', ['ionic', 'starter.controllers', 'st
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
-
 });
